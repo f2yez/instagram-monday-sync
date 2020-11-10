@@ -17,6 +17,9 @@ app.get("/hook/terms", (req, res) => {
   res.status(200).send("our terms is");
 });
 
+app.get('/.well-known/acme-challenge/:content', function(req, res) {
+  res.send('xxxxxxxxxxxx-yyyy.zzzzzzzzzzzzzzzzzzz')
+})
 
 // Add Get http method for webhook callback to verify my callback url
 app.get("/hook/instagram", (req, res) => {
