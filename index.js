@@ -18,7 +18,7 @@ app.get("/hook/terms", (req, res) => {
 });
 
 app.get('/.well-known/acme-challenge/:content', function(req, res) {
-  res.send('xxxxxxxxxxxx-yyyy.zzzzzzzzzzzzzzzzzzz')
+  res.send('B1D8bWWbumawWby366dwWZNf2xsGFFXHkOQmJtmlems.zI34ZmE3-wn92V07wM69mGkXlRuNAYbfNACxkDMhdPA')
 })
 
 // Add Get http method for webhook callback to verify my callback url
