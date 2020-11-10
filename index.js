@@ -6,10 +6,21 @@ const bodyParser = require("body-parser")
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// Tell express to use body-parser's JSON parsing
 app.use(bodyParser.json())
 app.get("/hook/instagram", (req, res) => {
-  res.send("welcome to  hook");
+  let VERIFY_TOKEN = "@1234@56789@@@";
+
+  let mode = req.query['hub.mode'];
+  let token = req.query['hub.verify_token'];
+  let challenge = req.query['hub.challenge'];
+  if (mode && token) {
+    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+      console.log('WEBHOOK_VERIFIED');
+      res.status(200).send(challenge);
+    } else {
+      res.sendStatus(403);      
+    }
+  }
 });
 
 app.post("/hook/instagram", (req, res) => {
