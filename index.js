@@ -8,7 +8,7 @@ const PORT = 3000
 
 // Tell express to use body-parser's JSON parsing
 app.use(bodyParser.json())
-app.post("/hook/instagram", (req, res) => {
+app.get("/hook/instagram", (req, res) => {
   return "welcome to  hook";
 });
 
