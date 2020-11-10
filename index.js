@@ -9,6 +9,15 @@ const PORT = process.env.PORT || 3000
 // Register Body parser to my app to i can parseing request and response
 app.use(bodyParser.json())
 
+app.get("/hook/privacy", (req, res) => {
+  res.status(200).send("our privacy is");
+});
+
+app.get("/hook/terms", (req, res) => {
+  res.status(200).send("our terms is");
+});
+
+
 // Add Get http method for webhook callback to verify my callback url
 app.get("/hook/instagram", (req, res) => {
   // My Verification token same into the 
