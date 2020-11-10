@@ -36,7 +36,7 @@ app.post("/hook/instagram", (req, res) => {
   } else if (field == 'mentions') {
 
   }
-  console.log(slackMessage);
+  console.log("msg => ", slackMessage);
   res.status(200).end();
 });
 
