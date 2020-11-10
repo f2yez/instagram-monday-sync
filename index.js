@@ -30,6 +30,7 @@ app.get("/hook/instagram", (req, res) => {
 
 app.post("/hook/instagram", (req, res) => {
   const { field, value } = req.body;
+  console.log(req.body);
   let slackMessage = '';
   if (field == 'comments') {
     slackMessage = generateNewCommentMsg(value.text);
