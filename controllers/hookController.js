@@ -33,7 +33,7 @@ async function instagramEvents (req, res, next)
         if (field == 'comments') {
             slackTextMessage = utils.generateNewCommentMsg(value.text);
         } else if (field == 'mentions') {
-            slackTextMessage = utils.generateNewMentionsMsg(value.text);
+            slackTextMessage = utils.generateNewMentionsMsg();
         }
         if (slackTextMessage) {
             utils.sendMsgToSlack(slackTextMessage);
