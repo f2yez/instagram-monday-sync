@@ -25,7 +25,7 @@ function verifyInstagramCallback (req, res, next) {
 async function instagramEvents (req, res, next) {
     try {
         console.log('req.body', req.body);
-        const { changes } = req.body[0].entry[0];
+        const { changes } = Array.isArray(req.body) ? req.body[0].entry[0] : req.body.entry[0];
         const { field, value } = changes[0];
         let slackTextMessage = null;
         // Generate Slack msg based on payload
