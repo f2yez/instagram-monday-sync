@@ -1,5 +1,6 @@
 const { SLACK_WEBHOOK } = require("./../config/constants");
 const axios = require('axios')
+
 // Generate Comments Slack Message
 function generateNewCommentMsg(text) {
     return `Someone comments on one of your photos.\nThe comment body: ${text}`;
@@ -18,7 +19,7 @@ async function sendMsgToSlack(text) {
         .catch(error => {
             // I will do nothing
             console.error(error)
-        })
+        });
 }
 
 module.exports = {

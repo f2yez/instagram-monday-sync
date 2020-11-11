@@ -12,4 +12,4 @@ app.use(bodyParser.json())
 app.use('/', indexRouter);
 
 // Start express on the defined port
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} \n or \n live server https://www.carszone.ws`))

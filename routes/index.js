@@ -5,16 +5,16 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     res.status(200).send("Welcome, Routers working fine");
 });
-// Privacy Route
+// Privacy Route for facebook app
 router.get("/hook/privacy", (req, res) => {
     res.status(200).send("our privacy is");
 });
-// Terms Route
+// Terms Route for facebook app
 router.get("/hook/terms", (req, res) => {
     res.status(200).send("our terms is");
 });
-// Route to verify lestencrepty because i need to deploy my app into host,
-// so i need ssl domain  to us it into facebook app callback
+// Route to verify letsEncrypt because i need to deploy my app into a host,
+// so i need ssl domain to us it into facebook app callback
 router.get('/.well-known/acme-challenge/:content', function(req, res) {
     res.send('B1D8bWWbumawWby366dwWZNf2xsGFFXHkOQmJtmlems.zI34ZmE3-wn92V07wM69mGkXlRuNAYbfNACxkDMhdPA')
 });

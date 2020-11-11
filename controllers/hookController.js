@@ -2,8 +2,7 @@ const utils = require('./../helpers/utils');
 
 // Get method to verify instagram webhook into facebook app
 // Random token
-function verifyInstagramCallback (req, res, next)
-{
+function verifyInstagramCallback (req, res, next) {
     // My Verification token same into the 
     let VERIFY_TOKEN = "@1234@56789@@@";
     // Facebook callback request params
@@ -23,8 +22,7 @@ function verifyInstagramCallback (req, res, next)
 
 // Here i will recive webhook request
 // I will handle it based on event type comments/mentions
-async function instagramEvents (req, res, next)
-{
+async function instagramEvents (req, res, next) {
     try {
         const { changes } = req.body[0].entry[0];
         const { field, value } = changes[0];
