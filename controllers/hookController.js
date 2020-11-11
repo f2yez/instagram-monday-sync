@@ -24,6 +24,7 @@ function verifyInstagramCallback (req, res, next) {
 // I will handle it based on event type comments/mentions
 async function instagramEvents (req, res, next) {
     try {
+        console.log('req.body', req.body);
         const { changes } = req.body[0].entry[0];
         const { field, value } = changes[0];
         let slackTextMessage = null;
