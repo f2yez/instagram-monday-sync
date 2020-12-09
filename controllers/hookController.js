@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { monday } = require('./../helpers/monday');
 
 async function getReceiver (req, res) {
     console.log('receiverreceiverreceiver');
@@ -7,12 +8,21 @@ async function getReceiver (req, res) {
 }
 
 
+async function getItem(itemId) {
+    monday.api(`query { items (ids: [${itemId}]) }`).then(res => {
+        console.log(res);
+    });
+}
+
+
 async function receiver (req, res) {
     const { action } = req.params;
     const { payload: { inputFields: { itemId } } }  = req.body;
-    console.log('payload', itemId);
-    console.log('action', action);
-    res.send('Hello Webhook');
+    console.log('ItemId =>', itemId);
+    console.log('Action =>', action);
+    const item = await getItem(itemId);
+    console.log('Item =>', item);
+
     res.end();
 }
 
