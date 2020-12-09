@@ -17,7 +17,7 @@ async function getItem(itemId) {
             value
           }
     }}`).then(res => {
-        console.log(res.data.items);
+        console.log(res.data.items[0].column_values);
     });
 }
 
