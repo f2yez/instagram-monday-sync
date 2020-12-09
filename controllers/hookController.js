@@ -19,7 +19,7 @@ async function getItem(itemId) {
                 value
               }
         }}`);
-        if  (items && items.data && res.data.items.length > 0) {
+        if  (items && items.data && items.data.items.length > 0) {
             item = items.data.items[0]; // column_values structure is [{id, title, value}]
         }
     } catch (error) {
