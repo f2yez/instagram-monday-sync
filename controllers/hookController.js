@@ -14,5 +14,6 @@ async function receiver (req, res) {
 }
 
 module.exports = {
+    getReceiver,
     receiver,
 }
