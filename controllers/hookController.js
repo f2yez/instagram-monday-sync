@@ -9,7 +9,7 @@ async function getReceiver (req, res) {
 
 
 async function getItem(itemId) {
-    monday.api(`query { items (ids: [${itemId}]) }`).then(res => {
+    monday.api(`query { items (ids: [${itemId}]) {} }`).then(res => {
         console.log(res);
     });
 }
