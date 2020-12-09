@@ -3,6 +3,6 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/receiver', hookController.getReceiver);
-router.post('/receiver', hookController.receiver);
+router.post('/receiver/:action', hookController.receiver);
 
 module.exports = router;

@@ -8,7 +8,10 @@ async function getReceiver (req, res) {
 
 
 async function receiver (req, res) {
-    console.log('req.body', req.body);
+    const { action } = req.params;
+    const { payload: { inputFields: { itemId } } }  = req.body;
+    console.log('payload', itemId);
+    console.log('action', action);
     res.send('Hello Webhook');
     res.end();
 }
