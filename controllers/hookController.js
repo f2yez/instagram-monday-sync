@@ -20,7 +20,7 @@ async function getItem(itemId) {
               }
         }}`);
         if  (items && items.data && res.data.items.length > 0) {
-            item = res.data.items[0]; // column_values structure is [{id, title, value}]
+            item = items.data.items[0]; // column_values structure is [{id, title, value}]
         }
     } catch (error) {
         console.log('Error while get element', error.message);
