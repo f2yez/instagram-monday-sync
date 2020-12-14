@@ -38,8 +38,7 @@ async function uploadFile(file_url) {
                 file_url
             }
         );
-        console.log('results,', results);
-        return results.uploaded.fileUrl;
+        return results.data.uploaded.fileUrl;
     } catch (error) {
         console.log('error', error.message);
     }
