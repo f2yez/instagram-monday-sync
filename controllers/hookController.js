@@ -19,7 +19,6 @@ async function getItem(itemId) {
                 id
                 title
                 value
-                label
                 additional_info
               }
         }}`);
