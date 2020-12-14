@@ -39,6 +39,7 @@ async function getFieldValue(column) {
         if (jsonObj.files) {
             let files_urls = [];
             const files = jsonObj.files;
+            console.log('files', files);
             if (files) {
                 for (let index = 0; index < files.length; index++) {
                     const file = files[index];
@@ -76,6 +77,7 @@ async function mapFields(item) {
         for (let index = 0; index < columns.length; index++) {
             const column = columns[index];
             const fieldName = await getFieldName(column.id);
+            console.log('column.id', column.id);
             values[fieldName] = await getFieldValue(column);
         }
     } 
