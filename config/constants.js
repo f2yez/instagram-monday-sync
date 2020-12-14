@@ -18,7 +18,7 @@ const FIELDS = {
     text: 'product',
     status:  'status',
     date4: 'renew',
-    date5: 'expire',
+    date: 'expire',
     files: 'plan',
     files_1: 'certificate',
     files7: 'documents',

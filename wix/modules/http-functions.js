@@ -4,7 +4,7 @@ import wixData from 'wix-data';
 import rp from 'request-promise';
 
 const collection = 'MondayData';
-
+// https://fayez00.wixsite.com/website/_functions/create/
 export function post_create(request) {
 	let options = {
 		"headers": {
@@ -12,6 +12,7 @@ export function post_create(request) {
 		},
 		suppressAuth: true,
 	};
+  // get the request body
 	return request.body.json()
 	.then( (body) => {
 		return wixData.insert(collection, body, options);
@@ -30,6 +31,7 @@ export function post_create(request) {
 	} );
 }
 
+
 export function put_update(request) {
 	let options = {
 		"headers": {
@@ -40,19 +42,17 @@ export function put_update(request) {
 	return request.body.json()
 	.then( (body) => {
 		const itemId = body.itemId;
-		delete body.itemId;
-		wixData.query(collection).eq("itemId", 2010).find().then(results => {
+		//delete body.itemId;
+		return wixData.query(collection).eq("itemId", itemId).find().then(results => {
 			if(results.items.length > 0) {
 				const items = results.items;
 				// update the item in a collection
 				for (let index = 0; index < items.length; index++) {
 					const item = items[index];
-					return wixData.update(collection, [
+					return wixData.update(collection, {
 						...item, ...body
-					]);
+					});
 				}
-			} else {
-				return post_create(request);
 			}
 		});
 	} )
@@ -71,29 +71,21 @@ export function put_update(request) {
 	} );
 }
 
-export function uploadFile(url) {
-  return rp.get({ url, encoding: null })
-    .then( (file) => {
-      return mediaManager.upload(
-        "/monday",
-        file,
-        url.substring(url.lastIndexOf('/')+1),
-        {
-          "mediaOptions": {
-            "mimeType": "image/jpeg",
-            "mediaType": "image"
-          },
-          "metadataOptions": {
-            "isPrivate": false,
-            "isVisitorUpload": false,
-            "context": {
-              "someKey1": "someValue1",
-              "someKey2": "someValue2"
-            }
-          }
-        }
-      );
-    } );
+export function uploadFile(file) {
+  	return rp.get({ url: file.file_url, encoding: null })
+		.then( (file_data) => {
+		return mediaManager.upload(
+			"/monday",
+			file_data,
+			file.name,
+			{
+			"metadataOptions": {
+				"isPrivate": false,
+				"isVisitorUpload": false,
+			}
+			}
+		);
+	});
 }
 
 export async function post_upload(request) {
@@ -105,7 +97,7 @@ export async function post_upload(request) {
 	  // get the request body
 	try {
 		const body = await request.body.json()
-		const results = await uploadFile(body.file_url);
+		const results = await uploadFile(body);
 		options.body = {
 			"uploaded": results
 		};
@@ -117,4 +109,3 @@ export async function post_upload(request) {
 		return serverError(options);
 	}
 }
-

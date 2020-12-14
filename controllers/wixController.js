@@ -30,13 +30,11 @@ async function updateItem(payload) {
     });
 }
 
-async function uploadFile(file_url) {
+async function uploadFile(params) {
     try {
         const results = await axios.post(
             WIX_UPLOAD_FILE,
-            {
-                file_url
-            }
+            params
         );
         return results.data.uploaded.fileUrl;
     } catch (error) {
