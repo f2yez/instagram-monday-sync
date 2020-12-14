@@ -45,7 +45,8 @@ async function getFieldValue(column) {
                     const file = files[index];
                     // Get file public url
                     const file_url = await getFile(file.assetId);
-                    files_urls.push(file_url);
+                    // files_urls.push(file_url);
+                    files_urls = file_url;
                 }
             }
             value = files_urls;
