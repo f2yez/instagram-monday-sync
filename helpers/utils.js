@@ -18,8 +18,8 @@ async function getFile(assetsId) {
         const items = await monday.api(`query { assets (ids: [${assetsId}]) {
             public_url
         }}`);
-        if  (items && items.data && items.data.items.length > 0) {
-            item = items.data.items[0]; // column_values structure is [{id, title, value}]
+        if  (items && items.data && items.data.assets.length > 0) {
+            item = items.data.assets[0]; // column_values structure is [{id, title, value}]
         }
     } catch (error) {
         console.log('Error while get element', error.message);
