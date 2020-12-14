@@ -32,6 +32,7 @@ function getFieldName(columnId) {
 }
 
 async function getFieldValue(column) {
+    if (column.value == null) return null; 
     let value = '';
     try {
         const jsonObj = JSON.parse(column.value);
