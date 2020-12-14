@@ -19,6 +19,10 @@ async function getItem(itemId) {
                 value
                 additional_info
               }
+            group {
+                id
+                title
+            }  
         }}`);
         if  (items && items.data && items.data.items.length > 0) {
             item = items.data.items[0]; // column_values structure is [{id, title, value}]
