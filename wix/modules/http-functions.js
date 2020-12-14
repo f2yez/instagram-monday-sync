@@ -4,7 +4,7 @@ import wixData from 'wix-data';
 import rp from 'request-promise';
 
 const collection = 'MondayData';
-// https://fayez00.wixsite.com/website/_functions/create/
+
 export function post_create(request) {
 	let options = {
 		"headers": {
@@ -36,14 +36,15 @@ export function put_update(request) {
 	let options = {
 		"headers": {
 		  "Content-Type": "application/json"
-		}
+		},
+		suppressAuth: true,
 	};
 	  // get the request body
 	return request.body.json()
 	.then( (body) => {
 		const itemId = body.itemId;
 		//delete body.itemId;
-		return wixData.query(collection).eq("itemId", itemId).find().then(results => {
+		return wixData.query(collection).eq("itemId", itemId).find().then(async results => {
 			if(results.items.length > 0) {
 				const items = results.items;
 				// update the item in a collection
@@ -53,6 +54,8 @@ export function put_update(request) {
 						...item, ...body
 					});
 				}
+			} else {
+				return wixData.insert(collection, body, options);
 			}
 		});
 	} )
@@ -80,8 +83,8 @@ export function uploadFile(file) {
 			file.name,
 			{
 				"mediaOptions": {
-				  "mimeType": "image/jpeg",
-				  "mediaType": "image"
+				  "mimeType": file.mimeType,
+				  "mediaType": file.mediaType
 				},
 				"metadataOptions": {
 				  "isPrivate": false,

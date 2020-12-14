@@ -2,6 +2,7 @@ const axios = require('axios')
 const { FIELDS } = require('./../config/constants');
 const { monday } = require('./../helpers/monday');
 const { uploadFile } = require('./../controllers/wixController');
+const { getMimeType } = require('./mime');
 
 // Send payload to external http
 async function sendPayloadToHttp(payload) {
@@ -19,12 +20,17 @@ async function getFile(assetsId) {
         const items = await monday.api(`query { assets (ids: [${assetsId}]) {
             name
             public_url
+            file_extension
         }}`);
         if  (items && items.data && items.data.assets.length > 0) {
-            const { name, public_url } = items.data.assets[0];
+            const { name, public_url, file_extension } = items.data.assets[0];
+            const mimeType = getMimeType(file_extension);
+            const mediaType = mimeType.split('/')[0];
             url = public_url ? await uploadFile({
                 file_url: public_url,
-                name
+                name,
+                mimeType,
+                mediaType
             }) : null;
         }
     } catch (error) {
