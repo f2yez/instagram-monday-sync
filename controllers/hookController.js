@@ -40,9 +40,10 @@ async function receiver (req, res) {
     const item = await getItem(itemId);
     console.log('Item =>', item);
 
-    switch (newItem) {
+    switch (action) {
         case 'newItem':
             const fields = mapFields(item);
+            console.log('fields', fields);
             wixController.addNew(fields);
             break;
     
