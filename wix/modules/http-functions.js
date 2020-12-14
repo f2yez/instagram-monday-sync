@@ -1,18 +1,19 @@
-import {created, serverError} from 'wix-http-functions';
+import { created, serverError, ok } from 'wix-http-functions';
 import wixData from 'wix-data';
 
-const collection = 'mondayData';
+const collection = 'MondayData';
 // https://fayez00.wixsite.com/website/_functions/create/
 export function post_create(request) {
 	let options = {
 		"headers": {
-		"Content-Type": "application/json"
-		}
+			"Content-Type": "application/json"
+		},
+		suppressAuth: true,
 	};
   // get the request body
 	return request.body.json()
 	.then( (body) => {
-		return wixData.insert(collection, body);
+		return wixData.insert(collection, body, options);
 	} )
 	.then( (results) => {
 		options.body = {
