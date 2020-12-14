@@ -34,7 +34,9 @@ async function uploadFile(params) {
     try {
         const results = await axios.post(
             WIX_UPLOAD_FILE,
-            params
+            {
+                ...params
+            }
         );
         return results.data.uploaded.fileUrl;
     } catch (error) {

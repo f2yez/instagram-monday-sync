@@ -79,11 +79,19 @@ export function uploadFile(file) {
 			file_data,
 			file.name,
 			{
-			"metadataOptions": {
-				"isPrivate": false,
-				"isVisitorUpload": false,
-			}
-			}
+				"mediaOptions": {
+				  "mimeType": "image/jpeg",
+				  "mediaType": "image"
+				},
+				"metadataOptions": {
+				  "isPrivate": false,
+				  "isVisitorUpload": false,
+				  "context": {
+					"someKey1": "someValue1",
+					"someKey2": "someValue2"
+				  }
+				}
+			  }
 		);
 	});
 }
