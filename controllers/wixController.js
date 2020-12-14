@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { WIX_NEW_ITEM, WIX_UPDATE_ITEM } = require('./../config/constants');
+const { WIX_NEW_ITEM, WIX_UPDATE_ITEM, WIX_UPLOAD_FILE } = require('./../config/constants');
 
 async function webhookCallback (req, res) {
     console.log('got webhook event from Wix!', req.body);
