@@ -21,7 +21,6 @@ async function getFile(assetsId) {
             public_url
         }}`);
         if  (items && items.data && items.data.assets.length > 0) {
-            console.log();("items.data.assets[0]", items.data.assets[0]);
             const { name, public_url } = items.data.assets[0];
             url = public_url ? await uploadFile({
                 file_url: public_url,
