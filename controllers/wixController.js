@@ -9,7 +9,10 @@ async function addNew(payload) {
     axios.post(
         'https://fayez00.wixsite.com/website/_functions/create/', {
         payload
-    }).catch(error => {
+    }).then(res => {
+        console.log('res', res);
+    })
+    .catch(error => {
         console.error('error:', error);
     });
 }
