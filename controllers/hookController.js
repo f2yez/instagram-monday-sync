@@ -19,9 +19,6 @@ async function getItem(itemId) {
                 id
                 title
                 value
-                type
-                text
-                label
                 additional_info
               }
         }}`);
