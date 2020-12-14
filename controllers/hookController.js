@@ -47,12 +47,8 @@ async function receiver (req, res) {
             wixController.addNew(fields);
             break;
         case 'columnUpdated':
-            let updatePayload = {
-                itemId: itemId,
-            };
-            // const field = getFieldName(columnId);
-            // updatePayload[field] = columnValue.date || columnValue.index;
-            // wixController.updateItem(updatePayload);
+            const fields = await mapFields(item);
+            wixController.updateItem(fields);
             break;
         default:
             break;

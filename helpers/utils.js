@@ -31,10 +31,10 @@ function getFieldName(columnId) {
     return FIELDS[columnId] ? FIELDS[columnId] : columnId;
 }
 
-async function getFieldValue(stringValue) {
+async function getFieldValue(column) {
     let value = '';
     try {
-        const jsonObj = JSON.parse(stringValue);
+        const jsonObj = JSON.parse(column.value);
         // Handle files
         if (jsonObj.files) {
             let files_urls = [];
@@ -48,10 +48,11 @@ async function getFieldValue(stringValue) {
             value = files_urls;
         // Handle status    
         } else if (jsonObj.index) {
-        
+            const additional_info = JSON.parse(column.additional_info);
+            value = additional_info.label;
         // Handle status
         } else if (jsonObj.date) {
-
+            value = jsonObj.date;
         }
     } catch (error) {
         console.log('String is not json');
@@ -71,7 +72,7 @@ async function mapFields(item) {
         for (let index = 0; index < columns.length; index++) {
             const column = columns[index];
             const fieldName = getFieldName(column.id);
-            values[fieldName] = getFieldValue(column.value);
+            values[fieldName] = getFieldValue(column);
         }
     } 
     return values;
