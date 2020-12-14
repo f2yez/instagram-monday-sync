@@ -24,6 +24,7 @@ async function getItem(itemId) {
                 additional_info
               }
         }}`);
+        console.log('items', items);
         if  (items && items.data && items.data.items.length > 0) {
             item = items.data.items[0]; // column_values structure is [{id, title, value}]
         }
@@ -52,9 +53,9 @@ async function receiver (req, res) {
             let updatePayload = {
                 itemId: itemId,
             };
-            const field = getFieldName(columnId);
-            updatePayload[field] = columnValue.date || columnValue.index;
-            wixController.updateItem(updatePayload);
+            // const field = getFieldName(columnId);
+            // updatePayload[field] = columnValue.date || columnValue.index;
+            // wixController.updateItem(updatePayload);
             break;
         default:
             break;
