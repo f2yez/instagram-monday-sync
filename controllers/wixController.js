@@ -31,6 +31,7 @@ async function updateItem(payload) {
 }
 
 async function uploadFile(params) {
+    console.log('params', params);
     try {
         const results = await axios.post(
             WIX_UPLOAD_FILE,
