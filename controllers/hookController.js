@@ -48,6 +48,7 @@ async function receiver (req, res) {
             break;
         case 'columnUpdated':
             const fields = await mapFields(item);
+            console.log('fields', fields);
             wixController.updateItem(fields);
             break;
         default:
