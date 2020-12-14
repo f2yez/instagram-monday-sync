@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const axios = require('axios')
 
 async function webhookCallback (req, res) {
     console.log('got webhook event from Wix!', req.body);
