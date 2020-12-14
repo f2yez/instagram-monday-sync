@@ -35,16 +35,17 @@ async function getFieldValue(column) {
     let value = '';
     try {
         const jsonObj = JSON.parse(column.value);
-        console.log('jsonObj', jsonObj);
         // Handle files
         if (jsonObj.files) {
             let files_urls = [];
             const files = jsonObj.files;
-            for (let index = 0; index < files.length; index++) {
-                const file = files[index];
-                // Get file public url
-                const file_url = await getFile(file.assetId);
-                files_urls.push(file_url);
+            if (files) {
+                for (let index = 0; index < files.length; index++) {
+                    const file = files[index];
+                    // Get file public url
+                    const file_url = await getFile(file.assetId);
+                    files_urls.push(file_url);
+                }
             }
             value = files_urls;
         // Handle status    
@@ -54,6 +55,8 @@ async function getFieldValue(column) {
         // Handle status
         } else if (jsonObj.date) {
             value = jsonObj.date;
+        } else {
+            value = jsonObj;
         }
     } catch (error) {
         console.log('String is not json');
