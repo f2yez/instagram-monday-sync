@@ -42,7 +42,7 @@ async function receiver (req, res) {
 
     switch (action) {
         case 'newItem':
-            const fields = mapFields(item);
+            const fields = await mapFields(item);
             console.log('fields', fields);
             wixController.addNew(fields);
             break;

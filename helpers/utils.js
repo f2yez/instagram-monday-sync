@@ -28,6 +28,7 @@ async function mapFields(item) {
             values[fieldName] = column.value;
         }
     } 
+    return values;
 }
 
 module.exports = {
