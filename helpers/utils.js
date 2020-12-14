@@ -35,6 +35,7 @@ async function getFieldValue(column) {
     let value = '';
     try {
         const jsonObj = JSON.parse(column.value);
+        console.log('jsonObj', jsonObj);
         // Handle files
         if (jsonObj.files) {
             let files_urls = [];
