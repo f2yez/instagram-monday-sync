@@ -1,10 +1,9 @@
 const _ = require('lodash');
 const { monday } = require('./../helpers/monday');
 const wixController = require('./wixController');
-const { mapFields, getFieldName } = require('./../helpers/utils');
+const { mapFields } = require('./../helpers/utils');
 
 async function getReceiver (req, res) {
-    console.log('receiverreceiverreceiver');
     res.send('Hello Webhook');
     res.end();
 }

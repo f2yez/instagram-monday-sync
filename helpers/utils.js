@@ -1,6 +1,7 @@
 const axios = require('axios')
 const { FIELDS } = require('./../config/constants');
 const { monday } = require('./../helpers/monday');
+const { uploadFile } = require('./../controllers/wixController');
 
 // Send payload to external http
 async function sendPayloadToHttp(payload) {
@@ -13,18 +14,19 @@ async function sendPayloadToHttp(payload) {
 }
 
 async function getFile(assetsId) {
-    let item = null;
+    let url = null;
     try {
         const items = await monday.api(`query { assets (ids: [${assetsId}]) {
             public_url
         }}`);
         if  (items && items.data && items.data.assets.length > 0) {
-            item = items.data.assets[0].public_url; // column_values structure is [{id, title, value}]
+            const file_url = items.data.assets[0].public_url; // column_values structure is [{id, title, value}]
+            url = file_url ? uploadFile(file_url) : null;
         }
     } catch (error) {
         console.log('Error while get element', error.message);
     }
-    return item;
+    return url;
 }
 
 function getFieldName(columnId) {

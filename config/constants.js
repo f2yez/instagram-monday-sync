@@ -11,6 +11,8 @@ const INSTANCE_API_URL = 'https://dev.wix.com/api/v1';
 // WIX Collection Config
 const WIX_NEW_ITEM = 'https://fayez00.wixsite.com/website/_functions/create/';
 const WIX_UPDATE_ITEM = 'https://fayez00.wixsite.com/website/_functions/update/';
+const WIX_UPLOAD_FILE = 'https://fayez00.wixsite.com/website/_functions/upload/';
+
 const FIELDS = {
     name: 'supplier',
     text: 'product',
@@ -33,5 +35,6 @@ module.exports = {
     INSTANCE_API_URL,
     FIELDS,
     WIX_NEW_ITEM,
-    WIX_UPDATE_ITEM
+    WIX_UPDATE_ITEM,
+    WIX_UPLOAD_FILE
 }

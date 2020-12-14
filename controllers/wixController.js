@@ -30,8 +30,23 @@ async function updateItem(payload) {
     });
 }
 
+async function uploadFile(file_url) {
+    try {
+        const results = await axios.post(
+            WIX_UPLOAD_FILE,
+            {
+                file_url
+            }
+        );
+        return results.uploaded.fileUrl;
+    } catch (error) {
+        console.log('error', error.message);
+    }
+}
+
 module.exports = {
     webhookCallback,
     addNew,
-    updateItem
+    updateItem,
+    uploadFile
 }
