@@ -19,10 +19,10 @@ async function getItem(itemId) {
                 id
                 title
                 value
+                label
                 additional_info
               }
         }}`);
-        console.log('items', items);
         if  (items && items.data && items.data.items.length > 0) {
             item = items.data.items[0]; // column_values structure is [{id, title, value}]
         }
