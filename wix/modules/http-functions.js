@@ -51,6 +51,8 @@ export function put_update(request) {
 						...item, ...body
 					]);
 				}
+			} else {
+				return post_create(request);
 			}
 		});
 	} )
