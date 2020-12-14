@@ -9,7 +9,7 @@ async function webhookCallback (req, res) {
 async function addNew(payload) {
     axios.post(
         WIX_NEW_ITEM, {
-        payload
+        ...payload
     }).then(res => {
         console.log('res', res.data);
     })
@@ -21,7 +21,7 @@ async function addNew(payload) {
 async function updateItem(payload) {
     axios.put(
         WIX_UPDATE_ITEM, {
-        payload
+        ...payload
     }).then(res => {
         console.log('res', res.data);
     })
