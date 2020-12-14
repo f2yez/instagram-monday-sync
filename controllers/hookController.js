@@ -8,7 +8,6 @@ async function getReceiver (req, res) {
     res.end();
 }
 
-
 async function getItem(itemId) {
     let item = null;
     try {

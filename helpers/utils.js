@@ -21,7 +21,7 @@ async function getFile(assetsId) {
         }}`);
         if  (items && items.data && items.data.assets.length > 0) {
             const file_url = items.data.assets[0].public_url; // column_values structure is [{id, title, value}]
-            url = file_url ? uploadFile(file_url) : null;
+            url = file_url ? await uploadFile(file_url) : null;
         }
     } catch (error) {
         console.log('Error while get element', error.message);
