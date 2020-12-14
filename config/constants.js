@@ -7,6 +7,10 @@ const WIX_APP_ID = '20538abc-047c-4605-bf7c-6643e2dd7a4f';
 const WIX_PUBLIC_KEY = '';
 const APP_SECRET = '082359ba-7d45-4902-b899-e0fae2ccc67a';
 const INSTANCE_API_URL = 'https://dev.wix.com/api/v1';
+
+// WIX Collection Config
+const WIX_NEW_ITEM = 'https://fayez00.wixsite.com/website/_functions/create/';
+const WIX_UPDATE_ITEM = 'https://fayez00.wixsite.com/website/_functions/update/';
 const FIELDS = {
     name: 'supplier',
     text: 'product',
@@ -27,5 +31,7 @@ module.exports = {
     WIX_PUBLIC_KEY,
     APP_SECRET,
     INSTANCE_API_URL,
-    FIELDS
+    FIELDS,
+    WIX_NEW_ITEM,
+    WIX_UPDATE_ITEM
 }

@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { monday } = require('./../helpers/monday');
 const wixController = require('./wixController');
-const { mapFields } = require('./../helpers/utils');
+const { mapFields, getFieldName } = require('./../helpers/utils');
 
 async function getReceiver (req, res) {
     console.log('receiverreceiverreceiver');
@@ -14,11 +14,14 @@ async function getItem(itemId) {
     let item = null;
     try {
         const items = await monday.api(`query { items (ids: [${itemId}]) {
-            id, name,
+            id, name, status
             column_values {
                 id
                 title
-                value
+                value,
+                type,
+                label,
+                text
               }
         }}`);
         if  (items && items.data && items.data.items.length > 0) {
@@ -33,7 +36,7 @@ async function getItem(itemId) {
 
 async function receiver (req, res) {
     const { action } = req.params;
-    const { payload: { inputFields: { itemId } } }  = req.body;
+    const { payload: { inputFields: { itemId, columnId, columnValue } } }  = req.body;
     console.log('Payload =>', req.body.payload);
     console.log('ItemId =>', itemId);
     console.log('Action =>', action);
@@ -43,10 +46,16 @@ async function receiver (req, res) {
     switch (action) {
         case 'newItem':
             const fields = await mapFields(item);
-            console.log('fields', fields);
             wixController.addNew(fields);
             break;
-    
+        case 'columnUpdated':
+            let updatePayload = {
+                itemId: itemId,
+            };
+            const field = getFieldName(columnId);
+            updatePayload[field] = columnValue.date || columnValue.index;
+            wixController.updateItem(updatePayload);
+            break;
         default:
             break;
     }
