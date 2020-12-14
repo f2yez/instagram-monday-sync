@@ -14,7 +14,7 @@ async function getItem(itemId) {
     let item = null;
     try {
         const items = await monday.api(`query { items (ids: [${itemId}]) {
-            id, name, status
+            id, name
             column_values {
                 id
                 title
