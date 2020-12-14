@@ -13,9 +13,11 @@
   "dependencies": {
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
+    "corvid": "0.0.3",
     "express": "^4.17.1",
     "html2json": "^1.0.2",
     "imap-simple": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "mailparser": "^3.0.1",
     "monday-sdk-js": "^0.1.1"

@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const { monday } = require('./../helpers/monday');
+const wixController = require('./wixController');
+const { mapFields } = require('./../helpers/utils');
 
 async function getReceiver (req, res) {
     console.log('receiverreceiverreceiver');
@@ -38,6 +40,15 @@ async function receiver (req, res) {
     const item = await getItem(itemId);
     console.log('Item =>', item);
 
+    switch (newItem) {
+        case 'newItem':
+            const fields = mapFields(item);
+            wixController.addNew(fields);
+            break;
+    
+        default:
+            break;
+    }
     res.end();
 }
 
