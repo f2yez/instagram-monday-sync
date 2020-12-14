@@ -56,7 +56,7 @@ async function getFieldValue(column) {
         }
     } catch (error) {
         console.log('String is not json');
-        value = stringValue.replace("'", '');
+        value = column.value.replace("'", '');
     }
     return value;
 }
@@ -71,8 +71,8 @@ async function mapFields(item) {
     if (columns) {
         for (let index = 0; index < columns.length; index++) {
             const column = columns[index];
-            const fieldName = getFieldName(column.id);
-            values[fieldName] = getFieldValue(column);
+            const fieldName = await getFieldName(column.id);
+            values[fieldName] = await getFieldValue(column);
         }
     } 
     return values;
