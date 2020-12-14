@@ -20,8 +20,8 @@ async function getItem(itemId) {
                 title
                 value,
                 type,
-                label,
-                text
+                text,
+                additional_info
               }
         }}`);
         if  (items && items.data && items.data.items.length > 0) {
