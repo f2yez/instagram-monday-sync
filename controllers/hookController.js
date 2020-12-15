@@ -3,11 +3,13 @@ const { monday } = require('./../helpers/monday');
 const wixController = require('./wixController');
 const { mapFields } = require('./../helpers/utils');
 
+// Test endpoint to make sure server online
 async function getReceiver (req, res) {
-    res.send('Hello Webhook');
+    res.send('Hello Receiver');
     res.end();
 }
 
+// Get Item details from monday
 async function getItem(itemId) {
     let item = null;
     try {
@@ -25,7 +27,7 @@ async function getItem(itemId) {
             }  
         }}`);
         if  (items && items.data && items.data.items.length > 0) {
-            item = items.data.items[0]; // column_values structure is [{id, title, value}]
+            item = items.data.items[0];
         }
     } catch (error) {
         console.log('Error while get element', error.message);
@@ -33,24 +35,29 @@ async function getItem(itemId) {
     return item;
 }
 
-
+// Monday Payload Reciever
 async function receiver (req, res) {
     const { action } = req.params;
-    const { payload: { inputFields: { itemId, columnId, columnValue } } }  = req.body;
+    // Get item id form received payload
+    const { payload: { inputFields: { itemId } } }  = req.body;
     console.log('Payload =>', req.body.payload);
     console.log('ItemId =>', itemId);
     console.log('Action =>', action);
+    // Get item details
     const item = await getItem(itemId);
     console.log('Item =>', item);
-
+    // Invoke action based on callback action into params
     switch (action) {
         case 'newItem':
+            // Match values from monday item payload with wix columns
             const fields = await mapFields(item);
+            // Invoke add new item wix api
             wixController.addNew(fields);
             break;
         case 'columnUpdated':
+            // Match values from monday item payload with wix columns
             const updateFields = await mapFields(item);
-            console.log('values', updateFields);
+            // Invoke update item wix api
             wixController.updateItem(updateFields);
             break;
         default:

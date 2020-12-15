@@ -1,19 +1,9 @@
-const axios = require('axios')
 const { FIELDS } = require('./../config/constants');
 const { monday } = require('./../helpers/monday');
 const { uploadFile } = require('./../controllers/wixController');
 const { getMimeType } = require('./mime');
 
-// Send payload to external http
-async function sendPayloadToHttp(payload) {
-    HTTP_RECIVER && axios.post(HTTP_RECIVER, {
-            ...payload
-        })
-        .catch(error => {
-            console.error(error)
-        });
-}
-
+// Get assets file from monday and upload it to  media manager into wix
 async function getFile(assetsId) {
     let url = null;
     try {
@@ -24,8 +14,10 @@ async function getFile(assetsId) {
         }}`);
         if  (items && items.data && items.data.assets.length > 0) {
             const { name, public_url, file_extension } = items.data.assets[0];
+            // Get mime type and media type to prepare file for wix uploading process
             const mimeType = getMimeType(file_extension);
             const mediaType = mimeType.split('/')[0];
+            // Upload file to wix
             url = public_url ? await uploadFile({
                 file_url: public_url,
                 name,
@@ -39,10 +31,12 @@ async function getFile(assetsId) {
     return url;
 }
 
+// Get wix column name based on monday field id
 function getFieldName(columnId) {
     return FIELDS[columnId] ? FIELDS[columnId] : columnId;
 }
 
+// Get field value and handle many column types
 async function getFieldValue(column) {
     if (column.value == null) return null; 
     let value = '';
@@ -79,6 +73,7 @@ async function getFieldValue(column) {
     return value;
 }
 
+// Map all item column  and get values based on wix column names
 async function mapFields(item) {
     const columns = item.column_values;
     let values = {};
@@ -89,7 +84,9 @@ async function mapFields(item) {
     if (columns) {
         for (let index = 0; index < columns.length; index++) {
             const column = columns[index];
+            // Get wix column name
             const fieldName = await getFieldName(column.id);
+            // Get column value
             values[fieldName] = await getFieldValue(column);
         }
     } 
@@ -97,7 +94,6 @@ async function mapFields(item) {
 }
 
 module.exports = {
-    sendPayloadToHttp,
     mapFields,
     getFieldName,
     getFieldValue,
