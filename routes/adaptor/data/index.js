@@ -1,5 +1,5 @@
 
-var dataController = require('../../controllers/dataController');
+var dataController = require('../../../controllers/dataController');
 var express = require('express');
 var router = express.Router();
 
