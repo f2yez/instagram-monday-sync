@@ -5,6 +5,6 @@ var router = express.Router();
 
 router.post('/provision', adaptorController.provision);
 router.use('/schemas', require('./schemas/index'));
-router.use('/data', require('./adaptor/data'));
+router.use('/data', require('./data/index'));
 
 module.exports = router;
