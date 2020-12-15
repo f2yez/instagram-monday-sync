@@ -40,7 +40,7 @@ async function remove(req, res) {
 async function count(req, res) {
 
     res.json({
-        
+        totalCount: 0
     });
 }
 
