@@ -1,5 +1,5 @@
 
-var schemasController = require('../../controllers/schemasController');
+var schemasController = require('../../../controllers/schemasController');
 var express = require('express');
 var router = express.Router();
 
