@@ -3,7 +3,7 @@ const { schemas } = require('./../schemas/index');
 
 async function find(req, res) {
 
-    res.json({ schemas: schemas[0] });
+    res.json({ schemas });
 }
 
 async function list(req, res) {
