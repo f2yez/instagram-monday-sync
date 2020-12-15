@@ -2,7 +2,8 @@
 async function find(req, res) {
 
     res.json({
-        
+        items: [],
+        totalCount: 0
     });
 }
 
