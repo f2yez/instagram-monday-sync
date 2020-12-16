@@ -63,7 +63,7 @@ async function receiver (req, res) {
         case 'textUpdated':
             // Match values from monday item payload with wix columns
             const textFieldPayload = {
-                itemId
+                itemId: `${itemId}`
             }
             const fieldName = await getFieldName('text_updates');
             // Get column value
