@@ -16,7 +16,7 @@ async function getFile(assetsId) {
             const { name, public_url, file_extension } = items.data.assets[0];
             // Get mime type and media type to prepare file for wix uploading process
             const mimeType = getMimeType(file_extension);
-            const mediaType = mimeType.split('/')[0];
+            const mediaType = mimeType.split('/')[0] == 'image' ? 'image' : 'document' ;
             // Upload file to wix
             url = public_url ? await uploadFile({
                 file_url: public_url,
