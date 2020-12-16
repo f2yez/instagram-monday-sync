@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { monday } = require('./../helpers/monday');
 const wixController = require('./wixController');
-const { mapFields } = require('./../helpers/utils');
+const { mapFields, getFieldName, getFieldValue } = require('./../helpers/utils');
 
 // Test endpoint to make sure server online
 async function getReceiver (req, res) {
@@ -60,6 +60,17 @@ async function receiver (req, res) {
             // Invoke update item wix api
             wixController.updateItem(updateFields);
             break;
+        case 'textUpdated':
+            // Match values from monday item payload with wix columns
+            const textFieldPayload = {
+                itemId
+            }
+            const fieldName = await getFieldName('text_updates');
+            // Get column value
+            textFieldPayload[fieldName] = req.body.payload.inputFields.text;
+            // Invoke update item wix api
+            wixController.updateItem(textFieldPayload);
+            break;    
         default:
             break;
     }

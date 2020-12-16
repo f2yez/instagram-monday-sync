@@ -18,6 +18,7 @@ const FIELDS = {
     files: 'plan',
     files_1: 'certificate',
     files7: 'documents',
+    text_updates: 'updates'
 };
 
 module.exports = {
