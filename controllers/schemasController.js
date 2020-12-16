@@ -11,7 +11,7 @@ async function list(req, res) {
     res.json({ schemas });
 }
 
-module.exports =  {
+module.exports = {
     find,
     list
 }

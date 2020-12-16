@@ -3,7 +3,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 // Initialize express and define a port
 const app = express()
-const hostname = '185.132.250.36';
+const hostname = 'localhost';
 const PORT = process.env.PORT || 3000;
 const { setMondayToken } = require('./helpers/monday');
 var indexRouter = require('./routes/index');
